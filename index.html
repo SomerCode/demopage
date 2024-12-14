@@ -5,7 +5,7 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Google Analytics Demo</title>
     <!-- Google Analytics -->
-    <script async src="https://www.googletagmanager.com/gtag/js?id=G-470310764"></script>
+    <script async src="https://www.googletagmanager.com/gtag/js?id=G-XXXXXXXXXX"></script>
     <script>
         window.dataLayer = window.dataLayer || [];
         function gtag(){dataLayer.push(arguments);}
@@ -17,11 +17,33 @@
         body {
             font-family: Arial, sans-serif;
             line-height: 1.6;
-            margin: 20px;
+            margin: 0;
             padding: 0;
+            background-color: #f4f4f9;
+            color: #333;
+        }
+        header {
+            background-color: #007BFF;
+            color: white;
+            padding: 20px;
+            text-align: center;
+            box-shadow: 0 2px 5px rgba(0,0,0,0.1);
+        }
+        .container {
+            max-width: 900px;
+            margin: 20px auto;
+            padding: 20px;
+            background: white;
+            border-radius: 8px;
+            box-shadow: 0 2px 5px rgba(0,0,0,0.1);
         }
         .section {
             margin: 20px 0;
+        }
+        h2 {
+            border-left: 4px solid #007BFF;
+            padding-left: 10px;
+            color: #007BFF;
         }
         button {
             margin: 5px;
@@ -31,6 +53,7 @@
             border: none;
             border-radius: 5px;
             cursor: pointer;
+            transition: background-color 0.3s;
         }
         button:hover {
             background-color: #0056b3;
@@ -40,73 +63,101 @@
             height: auto;
             cursor: pointer;
             margin: 10px;
+            border-radius: 8px;
+            transition: transform 0.3s, box-shadow 0.3s;
+        }
+        .image:hover {
+            transform: scale(1.05);
+            box-shadow: 0 4px 8px rgba(0,0,0,0.2);
         }
         form {
             max-width: 400px;
+            margin: 0 auto;
         }
         input, textarea {
             display: block;
             width: 100%;
             margin: 10px 0;
             padding: 10px;
+            border: 1px solid #ddd;
+            border-radius: 5px;
+        }
+        input:focus, textarea:focus {
+            outline: none;
+            border-color: #007BFF;
+            box-shadow: 0 0 5px rgba(0,123,255,0.5);
         }
         .slider {
             width: 300px;
         }
+        footer {
+            text-align: center;
+            margin: 20px 0;
+            padding: 10px;
+            color: #666;
+            font-size: 0.9em;
+        }
     </style>
 </head>
 <body>
-    <h1>Google Analytics Demo Seite</h1>
+    <header>
+        <h1>Google Analytics Demo Seite</h1>
+    </header>
 
-    <!-- Navigation -->
-    <div class="section">
-        <h2>Navigation</h2>
-        <a href="#section1" onclick="gtag('event', 'navigation', {'event_category': 'link', 'event_label': 'Zu Abschnitt 1'});">Zu Abschnitt 1</a>
-        <a href="#section2" onclick="gtag('event', 'navigation', {'event_category': 'link', 'event_label': 'Zu Abschnitt 2'});">Zu Abschnitt 2</a>
+    <div class="container">
+        <!-- Navigation -->
+        <div class="section">
+            <h2>Navigation</h2>
+            <a href="#section1" onclick="gtag('event', 'navigation', {'event_category': 'link', 'event_label': 'Zu Abschnitt 1'});">Zu Abschnitt 1</a>
+            <a href="#section2" onclick="gtag('event', 'navigation', {'event_category': 'link', 'event_label': 'Zu Abschnitt 2'});">Zu Abschnitt 2</a>
+        </div>
+
+        <!-- Buttons -->
+        <div class="section">
+            <h2>Buttons</h2>
+            <button onclick="gtag('event', 'click', {'event_category': 'button', 'event_label': 'Button 1'});">Button 1</button>
+            <button onclick="gtag('event', 'click', {'event_category': 'button', 'event_label': 'Button 2'});">Button 2</button>
+        </div>
+
+        <!-- Formular -->
+        <div class="section">
+            <h2>Kontaktformular</h2>
+            <form onsubmit="gtag('event', 'submit', {'event_category': 'form', 'event_label': 'Kontaktformular'}); return false;">
+                <input type="text" name="name" placeholder="Ihr Name" required>
+                <input type="email" name="email" placeholder="Ihre E-Mail" required>
+                <textarea name="message" placeholder="Ihre Nachricht" required></textarea>
+                <button type="submit">Absenden</button>
+            </form>
+        </div>
+
+        <!-- Bilder -->
+        <div class="section">
+            <h2>Bilder</h2>
+            <img src="https://via.placeholder.com/200" alt="Beispielbild 1" class="image" onclick="gtag('event', 'click', {'event_category': 'image', 'event_label': 'Bild 1'});">
+            <img src="https://via.placeholder.com/200" alt="Beispielbild 2" class="image" onclick="gtag('event', 'click', {'event_category': 'image', 'event_label': 'Bild 2'});">
+        </div>
+
+        <!-- Slider -->
+        <div class="section">
+            <h2>Slider</h2>
+            <input type="range" min="1" max="100" class="slider" oninput="gtag('event', 'input', {'event_category': 'slider', 'event_label': 'Slider-Wert', 'value': this.value});">
+        </div>
+
+        <!-- Abschnitt 1 -->
+        <div id="section1" class="section">
+            <h2>Abschnitt 1</h2>
+            <p>Willkommen in Abschnitt 1 der Demo-Seite.</p>
+        </div>
+
+        <!-- Abschnitt 2 -->
+        <div id="section2" class="section">
+            <h2>Abschnitt 2</h2>
+            <p>Willkommen in Abschnitt 2 der Demo-Seite.</p>
+        </div>
     </div>
 
-    <!-- Buttons -->
-    <div class="section">
-        <h2>Buttons</h2>
-        <button onclick="gtag('event', 'click', {'event_category': 'button', 'event_label': 'Button 1'});">Button 1</button>
-        <button onclick="gtag('event', 'click', {'event_category': 'button', 'event_label': 'Button 2'});">Button 2</button>
-    </div>
-
-    <!-- Formular -->
-    <div class="section">
-        <h2>Kontaktformular</h2>
-        <form onsubmit="gtag('event', 'submit', {'event_category': 'form', 'event_label': 'Kontaktformular'}); return false;">
-            <input type="text" name="name" placeholder="Ihr Name" required>
-            <input type="email" name="email" placeholder="Ihre E-Mail" required>
-            <textarea name="message" placeholder="Ihre Nachricht" required></textarea>
-            <button type="submit">Absenden</button>
-        </form>
-    </div>
-
-    <!-- Bilder -->
-    <div class="section">
-        <h2>Bilder</h2>
-        <img src="https://via.placeholder.com/200" alt="Beispielbild 1" class="image" onclick="gtag('event', 'click', {'event_category': 'image', 'event_label': 'Bild 1'});">
-        <img src="https://via.placeholder.com/200" alt="Beispielbild 2" class="image" onclick="gtag('event', 'click', {'event_category': 'image', 'event_label': 'Bild 2'});">
-    </div>
-
-    <!-- Slider -->
-    <div class="section">
-        <h2>Slider</h2>
-        <input type="range" min="1" max="100" class="slider" oninput="gtag('event', 'input', {'event_category': 'slider', 'event_label': 'Slider-Wert', 'value': this.value});">
-    </div>
-
-    <!-- Abschnitt 1 -->
-    <div id="section1" class="section">
-        <h2>Abschnitt 1</h2>
-        <p>Willkommen in Abschnitt 1 der Demo-Seite.</p>
-    </div>
-
-    <!-- Abschnitt 2 -->
-    <div id="section2" class="section">
-        <h2>Abschnitt 2</h2>
-        <p>Willkommen in Abschnitt 2 der Demo-Seite.</p>
-    </div>
-
+    <footer>
+        <p>Erstellt für Google Analytics Demonstrationszwecke</p>
+    </footer>
 </body>
 </html>

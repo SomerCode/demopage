@@ -11,7 +11,19 @@
         function gtag(){dataLayer.push(arguments);}
         gtag('js', new Date());
 
+        // Standardmäßig Cookies deaktivieren
+        gtag('consent', 'default', {
+            'analytics_storage': 'denied'
+        });
+
         gtag('config', 'G-NFL7T3T86Z'); // Replace G-XXXXXXXXXX with your Measurement ID
+
+        // Funktion zur Aktivierung von Analytics
+        function enableAnalytics() {
+            gtag('consent', 'update', {
+                'analytics_storage': 'granted'
+            });
+        }
     </script>
     <style>
         body {
@@ -97,12 +109,48 @@
             color: #666;
             font-size: 0.9em;
         }
+
+        /* Cookie Banner Styles */
+        #cookie-banner {
+            background-color: #333;
+            color: white;
+            padding: 15px;
+            position: fixed;
+            bottom: 0;
+            width: 100%;
+            text-align: center;
+            display: none;
+        }
+        #cookie-banner button {
+            margin-left: 10px;
+            padding: 10px;
+            background-color: #007BFF;
+            color: white;
+            border: none;
+            cursor: pointer;
+            border-radius: 5px;
+        }
+        #cookie-banner button:hover {
+            background-color: #0056b3;
+        }
+        #cookie-banner .reject-button {
+            background-color: #555;
+        }
+        #cookie-banner .reject-button:hover {
+            background-color: #333;
+        }
     </style>
 </head>
 <body>
     <header>
         <h1>Google Analytics Demo Seite</h1>
     </header>
+
+    <div id="cookie-banner">
+        Diese Website verwendet Cookies, um Ihnen die beste Erfahrung zu bieten.
+        <button id="accept-cookies">Akzeptieren</button>
+        <button id="reject-cookies" class="reject-button">Ablehnen</button>
+    </div>
 
     <div class="container">
         <!-- Navigation -->
@@ -159,5 +207,27 @@
     <footer>
         <p>Erstellt für Google Analytics Demonstrationszwecke</p>
     </footer>
+
+    <script>
+        // Anzeigen des Cookie-Banners
+        document.addEventListener('DOMContentLoaded', function() {
+            if (!localStorage.getItem('cookies-accepted')) {
+                document.getElementById('cookie-banner').style.display = 'block';
+            }
+        });
+
+        // Akzeptieren der Cookies
+        document.getElementById('accept-cookies').addEventListener('click', function() {
+            enableAnalytics();
+            localStorage.setItem('cookies-accepted', 'true');
+            document.getElementById('cookie-banner').style.display = 'none';
+        });
+
+        // Ablehnen der Cookies
+        document.getElementById('reject-cookies').addEventListener('click', function() {
+            localStorage.setItem('cookies-accepted', 'false');
+            document.getElementById('cookie-banner').style.display = 'none';
+        });
+    </script>
 </body>
 </html>

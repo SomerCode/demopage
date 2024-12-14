@@ -1,0 +1,112 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Google Analytics Demo</title>
+    <!-- Google Analytics -->
+    <script async src="https://www.googletagmanager.com/gtag/js?id=G-470310764"></script>
+    <script>
+        window.dataLayer = window.dataLayer || [];
+        function gtag(){dataLayer.push(arguments);}
+        gtag('js', new Date());
+
+        gtag('config', 'G-XXXXXXXXXX'); // Replace G-XXXXXXXXXX with your Measurement ID
+    </script>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            line-height: 1.6;
+            margin: 20px;
+            padding: 0;
+        }
+        .section {
+            margin: 20px 0;
+        }
+        button {
+            margin: 5px;
+            padding: 10px 15px;
+            background-color: #007BFF;
+            color: white;
+            border: none;
+            border-radius: 5px;
+            cursor: pointer;
+        }
+        button:hover {
+            background-color: #0056b3;
+        }
+        .image {
+            width: 200px;
+            height: auto;
+            cursor: pointer;
+            margin: 10px;
+        }
+        form {
+            max-width: 400px;
+        }
+        input, textarea {
+            display: block;
+            width: 100%;
+            margin: 10px 0;
+            padding: 10px;
+        }
+        .slider {
+            width: 300px;
+        }
+    </style>
+</head>
+<body>
+    <h1>Google Analytics Demo Seite</h1>
+
+    <!-- Navigation -->
+    <div class="section">
+        <h2>Navigation</h2>
+        <a href="#section1" onclick="gtag('event', 'navigation', {'event_category': 'link', 'event_label': 'Zu Abschnitt 1'});">Zu Abschnitt 1</a>
+        <a href="#section2" onclick="gtag('event', 'navigation', {'event_category': 'link', 'event_label': 'Zu Abschnitt 2'});">Zu Abschnitt 2</a>
+    </div>
+
+    <!-- Buttons -->
+    <div class="section">
+        <h2>Buttons</h2>
+        <button onclick="gtag('event', 'click', {'event_category': 'button', 'event_label': 'Button 1'});">Button 1</button>
+        <button onclick="gtag('event', 'click', {'event_category': 'button', 'event_label': 'Button 2'});">Button 2</button>
+    </div>
+
+    <!-- Formular -->
+    <div class="section">
+        <h2>Kontaktformular</h2>
+        <form onsubmit="gtag('event', 'submit', {'event_category': 'form', 'event_label': 'Kontaktformular'}); return false;">
+            <input type="text" name="name" placeholder="Ihr Name" required>
+            <input type="email" name="email" placeholder="Ihre E-Mail" required>
+            <textarea name="message" placeholder="Ihre Nachricht" required></textarea>
+            <button type="submit">Absenden</button>
+        </form>
+    </div>
+
+    <!-- Bilder -->
+    <div class="section">
+        <h2>Bilder</h2>
+        <img src="https://via.placeholder.com/200" alt="Beispielbild 1" class="image" onclick="gtag('event', 'click', {'event_category': 'image', 'event_label': 'Bild 1'});">
+        <img src="https://via.placeholder.com/200" alt="Beispielbild 2" class="image" onclick="gtag('event', 'click', {'event_category': 'image', 'event_label': 'Bild 2'});">
+    </div>
+
+    <!-- Slider -->
+    <div class="section">
+        <h2>Slider</h2>
+        <input type="range" min="1" max="100" class="slider" oninput="gtag('event', 'input', {'event_category': 'slider', 'event_label': 'Slider-Wert', 'value': this.value});">
+    </div>
+
+    <!-- Abschnitt 1 -->
+    <div id="section1" class="section">
+        <h2>Abschnitt 1</h2>
+        <p>Willkommen in Abschnitt 1 der Demo-Seite.</p>
+    </div>
+
+    <!-- Abschnitt 2 -->
+    <div id="section2" class="section">
+        <h2>Abschnitt 2</h2>
+        <p>Willkommen in Abschnitt 2 der Demo-Seite.</p>
+    </div>
+
+</body>
+</html>
